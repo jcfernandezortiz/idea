@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	 <!-- Header -->
+	 <ui:insert name="header" >
+ 	  <ui:include src="/pages/template/header.xhtml" />
+   	</ui:insert>
+	
+	<!-- Content -->
+	<p:panel id="viewPanel"  header="Create Idea">
+		<p:messages id="msgs" />
+		<h:form>
+			<p:fieldset legend="Details" style="margin-bottom:20px" >
+	        	<h:panelGrid columns="2" cellpadding="5">
+		   
+		    		<p:outputLabel value="Name:" for="nameText" />
+	        		<p:inputText id="nameText" value="#{ideaBean.name}"  />
+	         
+	         		<p:outputLabel value="Description:" for="descText" />
+			        <p:inputText id="descText" value="#{ideaBean.description}"  />
+	         
+	       			<p:commandButton value="Ajax Submit" 
+		       			id="ajax" 
+		       			update="viewPanel" 
+		       			actionListener="#{ideaBean.save}" 
+		       			styleClass="ui-priority-primary" />
+	       			
+	       			<p:commandButton value="Submit" 
+		       			id="noAjax" 
+		       			ajax="false"
+		       			update="viewPanel" 
+		       			actionListener="#{ideaBean.save}" 
+		       			styleClass="ui-priority-primary" />
+				
+		        </h:panelGrid>
+	    	</p:fieldset>
+		</h:form>
+	</p:panel>
+</h:body>
+</html>
