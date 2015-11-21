@@ -1,1 +1,4 @@
 !*.jar
+!*.class
+!*.war
+!*.ear
