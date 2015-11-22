@@ -20,7 +20,6 @@
 	  <class>es.edu.upm.idea.entities.Clasification</class>
 	  <class>es.edu.upm.idea.entities.Comment</class>
 	  <class>es.edu.upm.idea.entities.IdeaState</class>
-	  <class>es.edu.upm.idea.entities.IdeaClasification</class>
 	  <class>es.edu.upm.idea.entities.Idea</class>
 	  <class>es.edu.upm.idea.entities.AuctionState</class>
 	  <class>es.edu.upm.idea.entities.Bid</class>

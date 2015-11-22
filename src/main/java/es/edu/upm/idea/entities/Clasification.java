@@ -1,13 +1,11 @@
 package es.edu.upm.idea.entities;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,9 +22,6 @@ public class Clasification {
 	
 	@Column(name="descripcion", nullable=false)
 	private String description;
-
-	@OneToMany(mappedBy="clasification")
-	private List<IdeaClasification> ideasClasifications;
 	
 	public int getIdClasification() {
 		return idClasification;

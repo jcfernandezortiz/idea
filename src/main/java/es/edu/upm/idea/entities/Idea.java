@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -39,8 +41,9 @@ public class Idea {
 	@OneToMany(mappedBy="idea")
 	private List<Comment> comments;
 	
-	@OneToMany(mappedBy="idea")
-	private List<IdeaClasification> ideaClasifications;
+	@ManyToMany
+	@JoinTable(name="idea_x_clasificacion", joinColumns={@JoinColumn(name="ididea")}, inverseJoinColumns={@JoinColumn(name="idclasificacion")})
+	private List<Clasification> classifications;
 	
 	@OneToMany(mappedBy="idea")
 	private List<Sale> sales;	
@@ -125,12 +128,13 @@ public class Idea {
 		this.comments = comments;
 	}
 
-	public List<IdeaClasification> getIdeaClasifications() {
-		return ideaClasifications;
+	public List<Clasification> getClassifications() {
+		return classifications;
 	}
 
-	public void setIdeaClasifications(List<IdeaClasification> ideaClasifications) {
-		this.ideaClasifications = ideaClasifications;
+	public void setClassifications(List<Clasification> classifications) {
+		this.classifications = classifications;
 	}
+
 
 }
