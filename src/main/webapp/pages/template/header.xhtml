@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<style>
+.panelGridCenter {
+    margin: 0 auto;
+}
+</style>
+<h:body>
+	<h1>I-dea</h1>
+		
+		<h:panelGrid columns="5" cellpadding="5">
+			<h:outputLink value="/ideaWeb/pages/index.xhtml" >Home</h:outputLink>
+			<h:outputLink value="/ideaWeb/pages/idea/create.xhtml" >Create Idea </h:outputLink>
+			<h:outputLink value="/ideaWeb/pages/idea/edit.xhtml" >Edit Idea</h:outputLink>
+			<h:outputLink value="/ideaWeb/pages/idea/edit.xhtml" >Edit Idea</h:outputLink>
+			<h:outputLink value="/ideaWeb/pages/idea/edit.xhtml" >Edit Idea</h:outputLink>
+		</h:panelGrid>
+		<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+		<p:dialog widgetVar="statusDialog" modal="true" 
+			draggable="false" closable="false" 
+			resizable="false" showHeader="false">
+		    <p:graphicImage name="/ideaWeb/style/loading_spinner.gif" />
+		</p:dialog>
+	
+	
+	
+</h:body>
+</html>
