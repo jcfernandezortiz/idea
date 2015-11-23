@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListIdeaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListIdeaEmpty}" rendered="#{ideaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ideaController.items.rowCount > 0}">
+                    <h:outputText value="#{ideaController.pagination.pageFirstItem + 1}..#{ideaController.pagination.pageLastItem + 1}/#{ideaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ideaController.previous}" value="#{bundle.Previous} #{ideaController.pagination.pageSize}" rendered="#{ideaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ideaController.next}" value="#{bundle.Next} #{ideaController.pagination.pageSize}" rendered="#{ideaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ideaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIdeaTitle_ididea}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ididea}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIdeaTitle_titulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titulo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIdeaTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIdeaTitle_fechaRegistro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaRegistro}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIdeaTitle_activo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.activo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIdeaTitle_idusuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idusuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIdeaTitle_idestadoIdea}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idestadoIdea}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ideaController.prepareView}" value="#{bundle.ListIdeaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ideaController.prepareEdit}" value="#{bundle.ListIdeaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ideaController.destroy}" value="#{bundle.ListIdeaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ideaController.prepareCreate}" value="#{bundle.ListIdeaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListIdeaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

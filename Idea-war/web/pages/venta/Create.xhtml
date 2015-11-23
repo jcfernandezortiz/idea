@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateVentaLabel_idventa}" for="idventa" />
+                    <h:inputText id="idventa" value="#{ventaController.selected.idventa}" title="#{bundle.CreateVentaTitle_idventa}" required="true" requiredMessage="#{bundle.CreateVentaRequiredMessage_idventa}"/>
+                    <h:outputLabel value="#{bundle.CreateVentaLabel_fechaInicio}" for="fechaInicio" />
+                    <h:inputText id="fechaInicio" value="#{ventaController.selected.fechaInicio}" title="#{bundle.CreateVentaTitle_fechaInicio}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateVentaLabel_fechaFin}" for="fechaFin" />
+                    <h:inputText id="fechaFin" value="#{ventaController.selected.fechaFin}" title="#{bundle.CreateVentaTitle_fechaFin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateVentaLabel_activo}" for="activo" />
+                    <h:inputText id="activo" value="#{ventaController.selected.activo}" title="#{bundle.CreateVentaTitle_activo}" />
+                    <h:outputLabel value="#{bundle.CreateVentaLabel_ididea}" for="ididea" />
+                    <h:selectOneMenu id="ididea" value="#{ventaController.selected.ididea}" title="#{bundle.CreateVentaTitle_ididea}" >
+                        <f:selectItems value="#{ideaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateVentaLabel_idestadoSubasta}" for="idestadoSubasta" />
+                    <h:selectOneMenu id="idestadoSubasta" value="#{ventaController.selected.idestadoSubasta}" title="#{bundle.CreateVentaTitle_idestadoSubasta}" >
+                        <f:selectItems value="#{estadoSubastaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ventaController.create}" value="#{bundle.CreateVentaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{ventaController.prepareList}" value="#{bundle.CreateVentaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateVentaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
