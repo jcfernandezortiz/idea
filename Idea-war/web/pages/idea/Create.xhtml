@@ -10,14 +10,11 @@
 <h:head>
 </h:head>
 <h:body>
-	 <!-- Header -->
-	 <ui:insert name="header" >
- 	  <ui:include src="/pages/template/header.xhtml" />
-   	</ui:insert>
-	
+	<ui:composition template="/template.xhtml">
+        
+        
+            <ui:define name="body">
 	<!-- Content -->
-	<p:panel id="viewPanel"  header="Create Idea">
-		<p:messages id="msgs" />
 		<h:form>
 			<p:fieldset legend="Details" style="margin-bottom:20px" >
 	        	<h:panelGrid columns="2" cellpadding="5">
@@ -43,22 +40,23 @@
                                     <f:selectItems value="#{estadoIdeaController.itemsAvailableSelectOne}"/>
                                 </h:selectOneMenu>
 	         
-	       			<p:commandButton value="Ajax Submit" 
+	       			<!--p:commandButton value="Ajax Submit" 
 		       			id="ajax" 
 		       			update="viewPanel" 
 		       			actionListener="#{ideaBean.save}" 
-		       			styleClass="ui-priority-primary" />
+		       			styleClass="ui-priority-primary" /-->
 	       			
 	       			<p:commandButton value="Submit" 
 		       			id="noAjax" 
 		       			ajax="false"
 		       			update="viewPanel" 
-		       			actionListener="#{ideaBean.save}" 
+		       			actionListener="#{ideaBean.create}" 
 		       			styleClass="ui-priority-primary" />
 				
 		        </h:panelGrid>
 	    	</p:fieldset>
 		</h:form>
-	</p:panel>
+            </ui:define>
+        </ui:composition>
 </h:body>
 </html>
