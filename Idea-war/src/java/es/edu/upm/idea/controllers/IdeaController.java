@@ -22,6 +22,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.hibernate.validator.internal.util.logging.Log_$logger;
 
 @Named("ideaController")
 @SessionScoped
@@ -95,7 +96,8 @@ public class IdeaController implements Serializable {
 
     public String prepareCreate() {
         current = new Idea();
-        current.setClasificacionList(getClasification().findAll());
+        clasifications = getClasification().findAll();
+        current.setClasificacionList(clasifications);
         selectedItemIndex = -1;
         return "Create";
     }
@@ -107,8 +109,9 @@ public class IdeaController implements Serializable {
             current.setActivo((short) 1);
             List<Clasificacion> list =  new ArrayList<Clasificacion>();
             for(String s : selectedClasification ){
-               // list.add(getClasifications().find(s);
+               list.add(getClasification().find( Integer.parseInt(s)));
             }
+            current.setClasificacionList(list);
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("IdeaCreated"));
             return prepareCreate();
@@ -121,7 +124,7 @@ public class IdeaController implements Serializable {
     public String prepareEdit() {
         current = (Idea) getItems().getRowData();
         
-        //current.setClasificacionList();
+        //current.setClasificacionList(getClasification().findRange(range));
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
