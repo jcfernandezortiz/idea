@@ -2,8 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title">Default Title</ui:insert></title>
@@ -11,18 +11,21 @@
     </h:head>
 
     <h:body>
+        <h1>
+            <ui:insert name="title">Default Title</ui:insert>
+        </h1>
         <p>
-            <ui:insert name="title">
-                <center>
-                <h1>I-dea</h1>
-                <h2>Share 4 growth</h2>
-                </center>
-            </ui:insert>
-        </p>
-        <p>
-            <ui:insert name="body">
-                Default Body
-            </ui:insert>
+            <p:panel id="viewPanel"  header="">
+		<p:messages id="msgs" />
+		
+                <p:fieldset legend="Details:" style="margin-bottom:20px" >
+	        	<h:panelGrid columns="2" cellpadding="5">
+	
+                            <ui:insert name="body">Default Body</ui:insert>
+            
+            	        </h:panelGrid>
+	    	</p:fieldset>
+            </p:panel>
         </p>
     </h:body>
 
