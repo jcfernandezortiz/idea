@@ -6,27 +6,26 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.CreateIdeaTitle}"></h:outputText>
-        </ui:define>
+        
+        
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
+            
+            <fieldset>
+                <legend>
+                    <h:outputText value="#{bundle.CreateIdeaTitle}" style="font-size: large;"></h:outputText>
+                </legend>
+            
+                <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateIdeaLabel_ididea}" for="ididea" />
-                    <h:inputText id="ididea" value="#{ideaController.selected.ididea}" title="#{bundle.CreateIdeaTitle_ididea}" required="true" requiredMessage="#{bundle.CreateIdeaRequiredMessage_ididea}"/>
+         
                     <h:outputLabel value="#{bundle.CreateIdeaLabel_titulo}" for="titulo" />
-                    <h:inputTextarea rows="4" cols="30" id="titulo" value="#{ideaController.selected.titulo}" title="#{bundle.CreateIdeaTitle_titulo}" />
+                    <h:inputTextarea rows="4" cols="30" id="titulo" value="#{ideaController.selected.titulo}" title="#{bundle.CreateIdeaTitle_titulo}" required="true"/>
                     <h:outputLabel value="#{bundle.CreateIdeaLabel_descripcion}" for="descripcion" />
                     <h:inputTextarea rows="4" cols="30" id="descripcion" value="#{ideaController.selected.descripcion}" title="#{bundle.CreateIdeaTitle_descripcion}" />
-                    <h:outputLabel value="#{bundle.CreateIdeaLabel_fechaRegistro}" for="fechaRegistro" />
-                    <h:inputText id="fechaRegistro" value="#{ideaController.selected.fechaRegistro}" title="#{bundle.CreateIdeaTitle_fechaRegistro}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateIdeaLabel_activo}" for="activo" />
-                    <h:inputText id="activo" value="#{ideaController.selected.activo}" title="#{bundle.CreateIdeaTitle_activo}" />
+                    
                     <h:outputLabel value="#{bundle.CreateIdeaLabel_idusuario}" for="idusuario" />
                     <h:selectOneMenu id="idusuario" value="#{ideaController.selected.idusuario}" title="#{bundle.CreateIdeaTitle_idusuario}" >
                         <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
@@ -44,7 +43,8 @@
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.CreateIdeaIndexLink}"/>
-            </h:form>
+                </h:form>
+          </fieldset>
         </ui:define>
     </ui:composition>
 

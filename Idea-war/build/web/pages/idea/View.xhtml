@@ -6,13 +6,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ViewIdeaTitle}"></h:outputText>
-        </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
+            <fieldset>
+                <legend>
+                    <h:outputText value="#{bundle.ViewIdeaTitle}" style="font-size: large;"></h:outputText>
+                </legend>
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewIdeaLabel_ididea}"/>
@@ -46,6 +47,7 @@
                 <h:link outcome="/index" value="#{bundle.ViewIdeaIndexLink}"/>
 
             </h:form>
+          </fieldset>
         </ui:define>
     </ui:composition>
 

@@ -6,6 +6,7 @@ import es.edu.upm.idea.controllers.util.PaginationHelper;
 import es.edu.upm.idea.services.IdeaFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -81,6 +82,10 @@ public class IdeaController implements Serializable {
 
     public String create() {
         try {
+            //Se setea la Fecha actual:
+            current.setFechaRegistro(new Date());
+            current.setActivo((short) 1);
+            
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("IdeaCreated"));
             return prepareCreate();

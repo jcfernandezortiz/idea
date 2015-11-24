@@ -186,7 +186,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "es.edu.upm.idea.entities.Usuario[ idusuario=" + idusuario + " ]";
+        return idusuario + " - " + nombre;
     }
     
 }

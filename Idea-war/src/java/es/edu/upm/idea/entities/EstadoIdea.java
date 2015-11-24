@@ -101,7 +101,7 @@ public class EstadoIdea implements Serializable {
 
     @Override
     public String toString() {
-        return "es.edu.upm.idea.entities.EstadoIdea[ idestadoIdea=" + idestadoIdea + " ]";
+        return idestadoIdea + " - " + descripcion;
     }
     
 }

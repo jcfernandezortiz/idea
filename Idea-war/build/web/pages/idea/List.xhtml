@@ -6,10 +6,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ListIdeaTitle}"></h:outputText>
-        </ui:define>
+       
+        
         <ui:define name="body">
+            
+        <h:outputText value="#{bundle.ListIdeaTitle}" style="font-size: large;"></h:outputText>
+ 
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
@@ -56,13 +58,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIdeaTitle_idusuario}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idusuario}"/>
+                            <h:outputText value="#{item.idusuario.nombre}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIdeaTitle_idestadoIdea}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idestadoIdea}"/>
+                            <h:outputText value="#{item.idestadoIdea.descripcion}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -82,7 +84,7 @@
                 <br />
                 <h:link outcome="/index" value="#{bundle.ListIdeaIndexLink}"/>
             </h:form>
-        </ui:define>
+       </ui:define>
     </ui:composition>
 
 </html>
