@@ -3,11 +3,15 @@ package es.edu.upm.idea.controllers;
 import es.edu.upm.idea.entities.Idea;
 import es.edu.upm.idea.controllers.util.JsfUtil;
 import es.edu.upm.idea.controllers.util.PaginationHelper;
+import es.edu.upm.idea.entities.Clasificacion;
 import es.edu.upm.idea.services.IdeaFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -27,15 +31,31 @@ public class IdeaController implements Serializable {
     private DataModel items = null;
     @EJB
     private es.edu.upm.idea.services.IdeaFacade ejbFacade;
+    
+    @EJB
+    private es.edu.upm.idea.services.ClasificacionFacade ejbacadeCalsification;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private String[] selectedClasification;
+    private List<Clasificacion> clasifications;
 
     public IdeaController() {
+       this.clasifications = new ArrayList<Clasificacion>();
     }
 
+    public List<Clasificacion> getClasifications(){
+       return clasifications = ejbacadeCalsification.findAll();
+    }
+    
     public Idea getSelected() {
         if (current == null) {
             current = new Idea();
+            
+            
+            for(Clasificacion c : getClasifications() ){
+                current.setDescripcion(c.getNombre());
+            }
+            current.setClasificacionList(clasifications);
             selectedItemIndex = -1;
         }
         return current;
@@ -85,7 +105,10 @@ public class IdeaController implements Serializable {
             //Se setea la Fecha actual:
             current.setFechaRegistro(new Date());
             current.setActivo((short) 1);
-            
+            List<Clasificacion> list =  new ArrayList<Clasificacion>();
+            for(String s : selectedClasification ){
+               // list.add(getClasifications().find(s);
+            }
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("IdeaCreated"));
             return prepareCreate();
@@ -195,6 +218,14 @@ public class IdeaController implements Serializable {
 
     public Idea getIdea(java.lang.Integer id) {
         return ejbFacade.find(id);
+    }
+
+    public String[] getSelectedClasification() {
+        return selectedClasification;
+    }
+
+    public void setSelectedClasification(String[] selectedClasification) {
+        this.selectedClasification = selectedClasification;
     }
 
     @FacesConverter(forClass = Idea.class)
