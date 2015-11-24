@@ -40,7 +40,7 @@
                                     <f:selectItems value="#{estadoIdeaController.itemsAvailableSelectOne}"/>
                                 </h:selectOneMenu>
                                 <h:outputLabel value="#{bundle.CreateIdeaLabel_clasification}" for="clasification" />
-                                <p:selectManyCheckbox id="clasification" value="#{ideaController.selectedClasification}" layout="grid" columns="3">
+                                <p:selectManyCheckbox id="clasification" value="#{ideaController.selectedClasification}" layout="grid" columns="2">
                                     <f:selectItems value="#{ideaController.selected.clasificacionList}" var="clasification" itemLabel="#{nombre}" itemValue="#{idclasificacion}" />
                                 </p:selectManyCheckbox>
 	       			
@@ -48,7 +48,7 @@
 		       			id="noAjax" 
 		       			ajax="false"
 		       			update="viewPanel" 
-		       			actionListener="#{ideaBean.create}" 
+		       			actionListener="#{ideaController.create}" 
 		       			styleClass="ui-priority-primary" />
 				
 		        </h:panelGrid>

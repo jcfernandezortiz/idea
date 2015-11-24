@@ -40,10 +40,14 @@
                                 <h:selectOneMenu id="idestadoIdea" value="#{ideaController.selected.idestadoIdea}" title="#{bundle.EditIdeaTitle_idestadoIdea}" >
                                     <f:selectItems value="#{estadoIdeaController.itemsAvailableSelectOne}"/>
                                 </h:selectOneMenu>
+                                <h:outputLabel value="#{bundle.CreateIdeaLabel_clasification}" for="clasification" />
+                                <p:selectManyCheckbox id="clasification" value="#{ideaController.selectedClasification}" layout="grid" columns="2">
+                                    <f:selectItems value="#{ideaController.selected.clasificacionList}" var="clasification" itemLabel="#{nombre}" itemValue="#{idclasificacion}" />
+                                </p:selectManyCheckbox>
 	       			<p:commandButton value="#{bundle.EditIdeaSaveLink}" id="ajax" 
 	       			update="viewPanel" 
                                 ajax="false"
-	       			actionListener="#{ideaBean.update}" 
+	       			actionListener="#{estadoIdeaController.update}" 
 	       			styleClass="ui-priority-primary" />
 				
 		
