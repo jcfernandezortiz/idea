@@ -4,6 +4,7 @@ import es.edu.upm.idea.entities.Idea;
 import es.edu.upm.idea.controllers.util.JsfUtil;
 import es.edu.upm.idea.controllers.util.PaginationHelper;
 import es.edu.upm.idea.entities.Clasificacion;
+import es.edu.upm.idea.services.ClasificacionFacade;
 import es.edu.upm.idea.services.IdeaFacade;
 
 import java.io.Serializable;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -43,16 +43,15 @@ public class IdeaController implements Serializable {
        this.clasifications = new ArrayList<Clasificacion>();
     }
 
-    public List<Clasificacion> getClasifications(){
-       return clasifications = ejbacadeCalsification.findAll();
+    private ClasificacionFacade getClasification(){
+      return ejbacadeCalsification;
     }
     
     public Idea getSelected() {
         if (current == null) {
             current = new Idea();
             
-            
-            for(Clasificacion c : getClasifications() ){
+            for(Clasificacion c : getClasification().findAll() ){
                 current.setDescripcion(c.getNombre());
             }
             current.setClasificacionList(clasifications);
@@ -96,6 +95,7 @@ public class IdeaController implements Serializable {
 
     public String prepareCreate() {
         current = new Idea();
+        current.setClasificacionList(getClasification().findAll());
         selectedItemIndex = -1;
         return "Create";
     }
@@ -120,6 +120,8 @@ public class IdeaController implements Serializable {
 
     public String prepareEdit() {
         current = (Idea) getItems().getRowData();
+        
+        //current.setClasificacionList();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
