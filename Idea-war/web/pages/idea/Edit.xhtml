@@ -42,16 +42,16 @@
                                 </h:selectOneMenu>
                                 <h:outputLabel value="#{bundle.CreateIdeaLabel_clasification}" for="clasification" />
                                 <p:selectManyCheckbox id="clasification" value="#{ideaController.selectedClasification}" layout="grid" columns="2">
-                                    <f:selectItems value="#{ideaController.selected.clasificacionList}" var="clasification" itemLabel="#{nombre}" itemValue="#{idclasificacion}" />
+                                    <f:selectItems value="#{ideaController.selected.clasificacionList}" var="clasification" 
+                                                   itemLabel="#{clasification.nombre}" itemValue="#{clasification.idclasificacion}" />
                                 </p:selectManyCheckbox>
-	       			<p:commandButton value="#{bundle.EditIdeaSaveLink}" id="ajax" 
+	       			
+		        </h:panelGrid>
+                            <p:commandButton value="#{bundle.EditIdeaSaveLink}" id="ajax" 
 	       			update="viewPanel" 
                                 ajax="false"
 	       			actionListener="#{estadoIdeaController.update}" 
 	       			styleClass="ui-priority-primary" />
-				
-		
-		        </h:panelGrid>
 	    	</p:fieldset>
 		</h:form>
         </ui:define>        
