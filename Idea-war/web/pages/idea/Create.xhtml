@@ -21,12 +21,7 @@
                                 <p:outputLabel value="#{bundle.CreateIdeaLabel_titulo}" for="titulo" />
                                 <p:inputTextarea rows="4" cols="30" id="titulo" value="#{ideaController.selected.titulo}" title="#{bundle.CreateIdeaTitle_titulo}" required="true" requiredMessage="#{bundle.CreateIdeaTitle_required}" />
                                 <p:outputLabel value="#{bundle.CreateIdeaLabel_descripcion}" for="descripcion" />
-                                <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{ideaController.selected.descripcion}" title="#{bundle.CreateIdeaTitle_descripcion}" />
-                                <h:outputLabel value="#{bundle.CreateIdeaLabel_idestadoIdea}" for="idestadoIdea" />
-                                <h:selectOneMenu id="idestadoIdea" value="#{ideaController.selected.idestadoIdea}" title="#{bundle.CreateIdeaTitle_idestadoIdea}" >
-                                    <f:selectItems value="#{estadoIdeaController.itemsAvailableSelectOne}"/>
-                                </h:selectOneMenu>
-                                
+                                <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{ideaController.selected.descripcion}" title="#{bundle.CreateIdeaTitle_descripcion}" /> 
                                 <h:outputLabel value="#{bundle.CreateIdeaLabel_clasification}" for="clasificacion" />
                                 <p:selectManyCheckbox id="clasification" value="#{ideaController.selectedClasification}" 
                                                       layout="grid" columns="2">

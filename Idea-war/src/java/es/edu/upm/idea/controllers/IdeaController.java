@@ -4,6 +4,7 @@ import es.edu.upm.idea.entities.Idea;
 import es.edu.upm.idea.controllers.util.JsfUtil;
 import es.edu.upm.idea.controllers.util.PaginationHelper;
 import es.edu.upm.idea.entities.Clasificacion;
+import es.edu.upm.idea.entities.EstadoIdea;
 import es.edu.upm.idea.entities.Usuario;
 import es.edu.upm.idea.services.ClasificacionFacade;
 import es.edu.upm.idea.services.IdeaFacade;
@@ -118,6 +119,7 @@ public class IdeaController implements Serializable {
             current.setFechaRegistro(new Date());
             current.setActivo((short) 1);
             current.setIdusuario(new Usuario(1));
+            current.setIdestadoIdea(new EstadoIdea(1));
             List<Clasificacion> list =  new ArrayList<Clasificacion>();
             for(String s : selectedClasification ){
                list.add(getClasification().find( Integer.parseInt(s)));
