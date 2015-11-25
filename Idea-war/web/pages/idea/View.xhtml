@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="body">
@@ -32,6 +33,14 @@
                     <h:outputText value="#{ideaController.selected.idusuario}" title="#{bundle.ViewIdeaTitle_idusuario}"/>
                     <h:outputText value="#{bundle.ViewIdeaLabel_idestadoIdea}"/>
                     <h:outputText value="#{ideaController.selected.idestadoIdea}" title="#{bundle.ViewIdeaTitle_idestadoIdea}"/>
+                    
+                    <h:outputLabel value="#{bundle.CreateIdeaLabel_clasification}" for="clasificacion" />
+                    <p:selectManyCheckbox id="clasification" value="#{ideaController.selectedClasification}" disabled="true" 
+                                                      layout="grid" columns="2">
+                                    <f:selectItems value="#{ideaController.selected.clasificacionList}" 
+                                                   var="clasificacion" 
+                                                   itemLabel="#{clasificacion.nombre}" itemValue="#{clasificacion.idclasificacion}" />
+                    </p:selectManyCheckbox>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{ideaController.destroyAndView}" value="#{bundle.ViewIdeaDestroyLink}"/>

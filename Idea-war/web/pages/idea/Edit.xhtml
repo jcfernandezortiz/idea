@@ -52,6 +52,9 @@
                                 ajax="false"
 	       			actionListener="#{estadoIdeaController.update}" 
 	       			styleClass="ui-priority-primary" />
+                            
+                        <br />
+                        <h:commandLink action="#{ideaController.prepareList}" value="#{bundle.ViewIdeaShowAllLink}"/>
 	    	</p:fieldset>
 		</h:form>
         </ui:define>        

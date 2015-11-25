@@ -39,9 +39,11 @@
                                 <h:selectOneMenu id="idestadoIdea" value="#{ideaController.selected.idestadoIdea}" title="#{bundle.CreateIdeaTitle_idestadoIdea}" >
                                     <f:selectItems value="#{estadoIdeaController.itemsAvailableSelectOne}"/>
                                 </h:selectOneMenu>
+                                
                                 <h:outputLabel value="#{bundle.CreateIdeaLabel_clasification}" for="clasificacion" />
-                                <p:selectManyCheckbox id="clasification" value="#{ideaController.selectedClasification}" layout="grid" columns="2">
-                                    <f:selectItems value="#{ideaController.selected.clasificacionList}" 
+                                <p:selectManyCheckbox id="clasification" value="#{ideaController.selectedClasification}" 
+                                                      layout="grid" columns="2">
+                                        <f:selectItems value="#{ideaController.selected.clasificacionList}" 
                                                    var="clasificacion" 
                                                    itemLabel="#{clasificacion.nombre}" itemValue="#{clasificacion.idclasificacion}" />
                                 </p:selectManyCheckbox>
@@ -55,6 +57,10 @@
 		       			update="viewPanel" 
 		       			actionListener="#{ideaController.create}" 
 		       			styleClass="ui-priority-primary" />
+                            
+                        <br />
+                        <h:commandLink action="#{ideaController.prepareList}" value="#{bundle.ViewIdeaShowAllLink}"/>    
+                        
 	    	</p:fieldset>
 		</h:form>
             </ui:define>
