@@ -17,23 +17,10 @@
                 </legend>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewIdeaLabel_ididea}"/>
-                    <h:outputText value="#{ideaController.selected.ididea}" title="#{bundle.ViewIdeaTitle_ididea}"/>
                     <h:outputText value="#{bundle.ViewIdeaLabel_titulo}"/>
                     <h:outputText value="#{ideaController.selected.titulo}" title="#{bundle.ViewIdeaTitle_titulo}"/>
                     <h:outputText value="#{bundle.ViewIdeaLabel_descripcion}"/>
-                    <h:outputText value="#{ideaController.selected.descripcion}" title="#{bundle.ViewIdeaTitle_descripcion}"/>
-                    <h:outputText value="#{bundle.ViewIdeaLabel_fechaRegistro}"/>
-                    <h:outputText value="#{ideaController.selected.fechaRegistro}" title="#{bundle.ViewIdeaTitle_fechaRegistro}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewIdeaLabel_activo}"/>
-                    <h:outputText value="#{ideaController.selected.activo}" title="#{bundle.ViewIdeaTitle_activo}"/>
-                    <h:outputText value="#{bundle.ViewIdeaLabel_idusuario}"/>
-                    <h:outputText value="#{ideaController.selected.idusuario}" title="#{bundle.ViewIdeaTitle_idusuario}"/>
-                    <h:outputText value="#{bundle.ViewIdeaLabel_idestadoIdea}"/>
-                    <h:outputText value="#{ideaController.selected.idestadoIdea}" title="#{bundle.ViewIdeaTitle_idestadoIdea}"/>
-                    
+                    <h:outputText value="#{ideaController.selected.descripcion}" title="#{bundle.ViewIdeaTitle_descripcion}"/>            
                     <h:outputLabel value="#{bundle.CreateIdeaLabel_clasification}" for="clasificacion" />
                     <p:selectManyCheckbox id="clasification" value="#{ideaController.selectedClasification}" disabled="true" 
                                                       layout="grid" columns="2">
@@ -43,7 +30,7 @@
                     </p:selectManyCheckbox>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{ideaController.destroyAndView}" value="#{bundle.ViewIdeaDestroyLink}"/>
+                <h:commandLink action="#{ideaController.destroyAndView}" value="#{bundle.ViewIdeaDestroyLink}" style="display:none"/>
                 <br />
                 <br />
                 <h:link outcome="Edit" value="#{bundle.ViewIdeaEditLink}"/>
