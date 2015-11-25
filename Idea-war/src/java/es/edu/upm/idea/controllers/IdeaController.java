@@ -22,7 +22,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import org.hibernate.validator.internal.util.logging.Log_$logger;
+
 
 @Named("ideaController")
 @SessionScoped
@@ -34,7 +34,7 @@ public class IdeaController implements Serializable {
     private es.edu.upm.idea.services.IdeaFacade ejbFacade;
     
     @EJB
-    private es.edu.upm.idea.services.ClasificacionFacade ejbacadeCalsification;
+    private es.edu.upm.idea.services.ClasificacionFacade ejbFacadeClasification;
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private String[] selectedClasification;
@@ -42,10 +42,11 @@ public class IdeaController implements Serializable {
 
     public IdeaController() {
        this.clasifications = new ArrayList<Clasificacion>();
+       selectedClasification = null;
     }
 
     private ClasificacionFacade getClasification(){
-      return ejbacadeCalsification;
+      return ejbFacadeClasification;
     }
     
     public Idea getSelected() {
@@ -90,6 +91,14 @@ public class IdeaController implements Serializable {
 
     public String prepareView() {
         current = (Idea) getItems().getRowData();
+        List<Clasificacion> list=getClasification().findAll();
+        selectedClasification = new String[list.size()];
+        int count = 0 ;
+        
+        for (Clasificacion selected : current.getClasificacionList() ){
+            selectedClasification[count++] = selected.getIdclasificacion()+"";        
+        }        
+        current.setClasificacionList(list); 
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
@@ -123,14 +132,24 @@ public class IdeaController implements Serializable {
 
     public String prepareEdit() {
         current = (Idea) getItems().getRowData();
-        
-        //current.setClasificacionList(getClasification().findRange(range));
+        List<Clasificacion> list=getClasification().findAll();
+        selectedClasification = new String[list.size()];
+        int count = 0 ;
+        for (Clasificacion selected : current.getClasificacionList() ){
+            selectedClasification[count++] = selected.getIdclasificacion()+"";        
+        }        
+        current.setClasificacionList(list); 
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
 
     public String update() {
         try {
+            List<Clasificacion> list =  new ArrayList<Clasificacion>();
+            for(String s : selectedClasification ){
+               list.add(getClasification().find( Integer.parseInt(s)));
+            }
+            current.setClasificacionList(list);
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("IdeaUpdated"));
             return "View";
