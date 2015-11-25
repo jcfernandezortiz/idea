@@ -16,7 +16,6 @@
             <ui:define name="body">
 	<!-- Content -->
 		<h:form>
-			<p:fieldset legend="Details" style="margin-bottom:20px" >
 	        	<h:panelGrid columns="2" cellpadding="5">
                                 <p:outputLabel value="#{bundle.CreateIdeaLabel_titulo}" for="titulo" />
                                 <p:inputTextarea rows="4" cols="30" id="titulo" value="#{ideaController.selected.titulo}" title="#{bundle.CreateIdeaTitle_titulo}" required="true" requiredMessage="#{bundle.CreateIdeaTitle_required}" />
@@ -41,9 +40,9 @@
 		       			styleClass="ui-priority-primary" />
                             
                         <br />
+                        <br />
                         <h:commandLink action="#{ideaController.prepareList}" value="#{bundle.ViewIdeaShowAllLink}" immediate="true"/>    
                         
-	    	</p:fieldset>
 		</h:form>
             </ui:define>
         </ui:composition>
