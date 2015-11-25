@@ -45,14 +45,8 @@
                                 <h:outputText value="#{bundle.ListIdeaTitle_fechaRegistro}"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaRegistro}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIdeaTitle_activo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.activo}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
