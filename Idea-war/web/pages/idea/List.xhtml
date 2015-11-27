@@ -9,10 +9,17 @@
        
         
         <ui:define name="body">
-            
-        <h:outputText value="#{bundle.ListIdeaTitle}" style="font-size: large;"></h:outputText>
  
             <h:form styleClass="jsfcrud_list_form">
+                <br/>       
+                <h:commandLink action="#{ideaController.prepareCreate}" value="#{bundle.ListIdeaCreateLink}">
+                   <f:param name="action_label" value="#{bundle.ListIdeaCreateLenged}" />
+                </h:commandLink>
+                 <br/>
+                 <br/>
+                 <h:outputText value="#{bundle.ListIdeaTitle}" style="font-size: large;"></h:outputText>
+                 <br/>
+                 <br/>
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
@@ -80,9 +87,7 @@
                 </h:panelGroup>
                 <br />
                 <br />
-                <h:commandLink action="#{ideaController.prepareCreate}" value="#{bundle.ListIdeaCreateLink}">
-                       <f:param name="action_label" value="#{bundle.ListIdeaCreateLenged}" />
-                </h:commandLink>
+                
                 
             </h:form>
        </ui:define>
