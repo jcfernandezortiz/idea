@@ -45,3 +45,5 @@ Temporary Items
 /build/
 /dist/
 /Idea-war/build/
+*.war
+*.ear
