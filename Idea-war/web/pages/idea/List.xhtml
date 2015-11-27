@@ -66,9 +66,13 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{ideaController.prepareView}" value="#{bundle.ListIdeaViewLink}"/>
+                            <h:commandLink action="#{ideaController.prepareView}" value="#{bundle.ListIdeaViewLink}">
+                                <f:param name="action_label" value="#{bundle.ListIdeaViewLenged}" />
+                            </h:commandLink>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{ideaController.prepareEdit}" value="#{bundle.ListIdeaEditLink}"/>
+                            <h:commandLink action="#{ideaController.prepareEdit}" value="#{bundle.ListIdeaEditLink}">
+                                <f:param name="action_label" value="#{bundle.ListIdeaEditLenged}" />
+                            </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink action="#{ideaController.destroy}" value="#{bundle.ListIdeaDestroyLink}" style="display:none"/>
                         </p:column>
@@ -76,7 +80,9 @@
                 </h:panelGroup>
                 <br />
                 <br />
-                <h:commandLink action="#{ideaController.prepareCreate}" value="#{bundle.ListIdeaCreateLink}"/>
+                <h:commandLink action="#{ideaController.prepareCreate}" value="#{bundle.ListIdeaCreateLink}">
+                       <f:param name="action_label" value="#{bundle.ListIdeaCreateLenged}" />
+                </h:commandLink>
                 
             </h:form>
        </ui:define>

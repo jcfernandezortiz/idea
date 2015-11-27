@@ -6,19 +6,22 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <title><ui:insert name="title">i-dea</ui:insert></title>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
     </h:head>
 
     <h:body>
         <h1>
-            <ui:insert name="title">Default Title</ui:insert>
+            <ui:insert name="title">
+                <h1>i-dea</h1>
+                <h4>share4growth</h4>
+            </ui:insert>
         </h1>
         <p>
             <p:panel id="viewPanel"  header="">
 		<p:messages id="msgs" />
 		
-                <p:fieldset legend="Details:" style="margin-bottom:20px" >
+                <p:fieldset legend="#{templateController.lenged}" style="margin-bottom:20px" >
 	        	<h:panelGrid columns="2" cellpadding="5">
 	
                             <ui:insert name="body">Default Body</ui:insert>

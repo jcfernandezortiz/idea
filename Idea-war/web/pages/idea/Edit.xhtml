@@ -37,11 +37,15 @@
 	       			update="viewPanel" 
                                 ajax="false"
 	       			actionListener="#{ideaController.update}" 
-	       			styleClass="ui-priority-primary" />
+                                styleClass="ui-priority-primary" >
+                                <f:param name="action_label" value="#{bundle.ListIdeaEditLenged}" />
+                            </p:commandButton>
                             
                         <br />
                         <br />
-                        <h:commandLink action="#{ideaController.prepareList}" value="#{bundle.ViewIdeaShowAllLink}"/>
+                        <h:commandLink action="#{ideaController.prepareList}" value="#{bundle.ViewIdeaShowAllLink}">
+                            <f:param name="action_label" value="#{bundle.IdeaListLenged}" />
+                        </h:commandLink>
 		</h:form>
         </ui:define>        
     </ui:composition>

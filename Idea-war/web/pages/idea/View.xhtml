@@ -25,8 +25,9 @@
                 </h:panelGrid>
                 <br />
                 <br />
-                <h:commandLink action="#{ideaController.prepareList}" value="#{bundle.ViewIdeaShowAllLink}"/>
-
+                <h:commandLink action="#{ideaController.prepareList}" value="#{bundle.ViewIdeaShowAllLink}">
+                    <f:param name="action_label" value="#{bundle.IdeaListLenged}" />
+                </h:commandLink>
 
             </h:form>
         </ui:define>        
