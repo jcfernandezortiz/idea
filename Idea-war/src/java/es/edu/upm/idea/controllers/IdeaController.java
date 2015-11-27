@@ -107,6 +107,7 @@ public class IdeaController implements Serializable {
 
     public String prepareCreate() {
         current = new Idea();
+        selectedClasification = null;
         clasifications = getClasification().findAll();
         current.setClasificacionList(clasifications);
         selectedItemIndex = -1;
@@ -218,6 +219,8 @@ public class IdeaController implements Serializable {
 
     private void recreateModel() {
         items = null;
+//        current = null;
+        selectedClasification = null;
     }
 
     private void recreatePagination() {
