@@ -5,6 +5,7 @@
  */
 package es.edu.upm.idea.services;
 
+import es.edu.upm.idea.controllers.UsuarioController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -71,6 +72,11 @@ public class Login {
     }
 
     public String add() {
+        
+        UsuarioController controller = new UsuarioController();
+        return controller.create(nombre, nombre, password);
+        
+        /*
         int i = 0;
         if (nombre != null) {
             PreparedStatement ps = null;
@@ -79,11 +85,15 @@ public class Login {
                 if (ds != null) {
                     con = ds.getConnection();
                     if (con != null) {
-                        String sql = "INSERT INTO usuario(nombre, password) VALUES(?,?)";
-                        ps = con.prepareStatement(sql);
-                        ps.setString(1, nombre);
-                        ps.setString(2, password);
-                        i = ps.executeUpdate();
+                        //create procedure user_insert(in id_perfil int, in nombre_ text, in correo_ text, in password_ text, out id int)
+                        String sql = "{call user_insert(?,?,?,?,?)}";
+                        ps = con.prepareCall(sql);
+                        ps.setInt(1, 2);
+                        ps.setString(2, nombre);
+                        ps.setString(3, "corrego@gmail.com");
+                        ps.setString(4, password);                        
+                        ps.setInt(5, i);
+                        ps.execute();
                     }
                 }
             } catch (Exception e) {
@@ -102,6 +112,7 @@ public class Login {
         } else {
             return "unsuccess";
         }
+                */
     }
 
     public void dbData(String uName) {
@@ -155,9 +166,9 @@ public class Login {
                                     "/login.xhtml");
                 }
             }
-            return "output";
+            return "success";
         } else {
-            return "invalid";
+            return "unsuccess";
         }
     }
 

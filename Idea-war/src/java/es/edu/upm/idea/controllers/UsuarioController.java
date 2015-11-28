@@ -3,9 +3,11 @@ package es.edu.upm.idea.controllers;
 import es.edu.upm.idea.entities.Usuario;
 import es.edu.upm.idea.controllers.util.JsfUtil;
 import es.edu.upm.idea.controllers.util.PaginationHelper;
+import es.edu.upm.idea.entities.Perfil;
 import es.edu.upm.idea.services.UsuarioFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -78,6 +80,12 @@ public class UsuarioController implements Serializable {
         selectedItemIndex = -1;
         return "Create";
     }
+    
+    public String prepareCreateLogin() {
+        current = new Usuario();
+        selectedItemIndex = -1;
+        return "success";
+    }
 
     public String create() {
         try {
@@ -87,6 +95,25 @@ public class UsuarioController implements Serializable {
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
+        }
+    }
+    
+    public String create(String nombre, String correo, String password) {
+        try {
+            current = new Usuario();
+            current.setActivo((short) 1);
+            current.setCorreo(correo);
+            current.setFechaRegistro(new Date());
+            current.setIdperfil(new Perfil(2));
+            current.setNombre(nombre);
+            current.setPassword(password);
+            
+            getFacade().create(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuarioCreated"));
+            return prepareCreateLogin();
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return "unsuccess";
         }
     }
 
