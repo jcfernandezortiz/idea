@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <title>Registration Page</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form id="registerForm">
+                <table>
+                    <tr>
+                        <td><h:outputText value="Enter Your Name"/></td>
+                        <td><h:inputText id="name" value="#{login.nombre}" required="true"
+                                         requiredMessage="Name field should be filled"/></td>
+                        <td><h:message for="name" style="color:red"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="Enter Password :"/></td>
+                        <td><h:inputSecret id="psw" value="#{login.password}" required="true"
+                                           requiredMessage="Password field should be filled"/></td>
+                        <td><h:message for="psw" style="color:red"/></td>
+                    </tr>
+                    <tr>
+                        <td/>
+                        <td><h:commandButton value="Register" action="#{login.add}"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
+                    </tr>
+                </table>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
