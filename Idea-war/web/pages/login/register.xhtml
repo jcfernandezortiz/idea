@@ -20,19 +20,25 @@ and open the template in the editor.
                 <table>
                     <tr>
                         <td><h:outputText value="Enter Your Name"/></td>
-                        <td><h:inputText id="name" value="#{login.nombre}" required="true"
+                        <td><h:inputText id="name" value="#{usuarioController.nombre}" required="true"
                                          requiredMessage="Name field should be filled"/></td>
                         <td><h:message for="name" style="color:red"/></td>
                     </tr>
                     <tr>
                         <td><h:outputText value="Enter Password :"/></td>
-                        <td><h:inputSecret id="psw" value="#{login.password}" required="true"
+                        <td><h:inputSecret id="psw" value="#{usuarioController.password}" required="true"
+                                           requiredMessage="Password field should be filled"/></td>
+                        <td><h:message for="psw" style="color:red"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="E-Mail :"/></td>
+                        <td><h:inputSecret id="psw" value="#{usuarioController.email}" required="true"
                                            requiredMessage="Password field should be filled"/></td>
                         <td><h:message for="psw" style="color:red"/></td>
                     </tr>
                     <tr>
                         <td/>
-                        <td><h:commandButton value="Register" action="#{login.add}"/></td>
+                        <td><h:commandButton value="Register" action="#{usuarioController.createRegister}"/></td>
                     </tr>
                     <tr>
                         <td><h:outputLink value="home.xhtml">Home</h:outputLink></td>

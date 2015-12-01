@@ -25,6 +25,11 @@ import javax.faces.model.SelectItem;
 public class UsuarioController implements Serializable {
 
     private Usuario current;
+    private String name;
+    private String password;
+    private String email;
+    private Date registerDate;
+    
     private DataModel items = null;
     @EJB
     private es.edu.upm.idea.services.UsuarioFacade ejbFacade;
@@ -32,6 +37,38 @@ public class UsuarioController implements Serializable {
     private int selectedItemIndex;
 
     public UsuarioController() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
     }
 
     public Usuario getSelected() {
@@ -98,22 +135,20 @@ public class UsuarioController implements Serializable {
         }
     }
     
-    public String create(String nombre, String correo, String password) {
+    public void prepareUserRegister(){
+        this.registerDate = new Date();
+        current = new Usuario(this.name, this.password, this.email, new Perfil(2), this.registerDate);
+    }
+    
+    public String createRegister() {
         try {
-            current = new Usuario();
-            current.setActivo((short) 1);
-            current.setCorreo(correo);
-            current.setFechaRegistro(new Date());
-            current.setIdperfil(new Perfil(2));
-            current.setNombre(nombre);
-            current.setPassword(password);
-            
+            prepareUserRegister();
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuarioCreated"));
-            return prepareCreateLogin();
+            return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return "unsuccess";
+            return null;
         }
     }
 
