@@ -19,6 +19,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
 
     @PersistenceContext(unitName = "Idea-warPU")
     private EntityManager em;
+    private Usuario user;
 
     @Override
     protected EntityManager getEntityManager() {
@@ -27,6 +28,15 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
 
     public UsuarioFacade() {
         super(Usuario.class);
+    }
+    
+    public Usuario login(String username, String password){
+        try{
+            user = (Usuario) em.createNamedQuery("Usuario.login").setParameter(username,":username").setParameter(password,":password").getSingleResult();
+            return user;
+        }catch(Exception e){
+            return null;
+        }
     }
     
 }

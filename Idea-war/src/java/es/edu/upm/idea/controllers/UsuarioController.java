@@ -291,7 +291,8 @@ public class UsuarioController implements Serializable {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Usuario.class.getName());
             }
         }
-
     }
-
+    public Usuario loginUser(String username, String password){
+            return current = getFacade().login(username, password);
+    }
 }
