@@ -11,9 +11,9 @@
             
         </ui:define>
         <ui:define name="body"> 
-            <p:panel id="viewLoginPanel"  header="">
+            
                 <p:fieldset legend="#{bundle.ingresoSistema}" style="width: 500px; margin-bottom:20px" >
-	        
+	        <p:messages id="msgs" />
                 <h:form>
                     <h:panelGrid columns="2"> 
                    
@@ -31,7 +31,7 @@
                     </h:panelGrid>                   
                 </h:form>
             	</p:fieldset>
-            </p:panel>
+            
         </ui:define>
     </ui:composition>
 

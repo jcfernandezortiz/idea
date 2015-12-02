@@ -11,8 +11,9 @@
             
         </ui:define>
         <ui:define name="body">
-            <p:panel id="viewLoginPanel"  header="">
+            
                 <p:fieldset legend="#{bundle.CreateUsuarioTitle}" style="width: 500px; margin-bottom:20px" >
+                <p:messages id="msgs" />
                     <h:form>
                         <h:panelGrid columns="2" cellpadding="5">
                             <h:outputLabel value="#{bundle.CreateUsuarioLabel_nombre}" for="nombre" />
@@ -29,7 +30,7 @@
                         </h:panelGrid>
                     </h:form>
                 </p:fieldset>
-            </p:panel>
+            
         </ui:define>
     </ui:composition>
 
