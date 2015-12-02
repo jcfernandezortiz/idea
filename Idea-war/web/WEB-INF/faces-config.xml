@@ -9,26 +9,37 @@
             <var>bundle</var>
         </resource-bundle>
     </application>
+    
     <navigation-rule>
-       <from-view-id>/pages/usuario/Login.xhtml</from-view-id>
-       <navigation-case>
-           <from-outcome>success</from-outcome>
-           <to-view-id>/pages/idea/List.xhtml</to-view-id>
-       </navigation-case>
-       <navigation-case>
-           <from-outcome>fail</from-outcome>
-           <to-view-id>/pages/usuario/Login.xhtml</to-view-id>
-       </navigation-case>
-       <navigation-case>
-           <from-outcome>register</from-outcome>
-           <to-view-id>/pages/usuario/Create.xhtml</to-view-id>
-       </navigation-case>
-   </navigation-rule>
+        <from-view-id>/pages/login/Login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/idea/List.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>fail</from-outcome>
+            <to-view-id>/pages/login/Login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
     <navigation-rule>
-       <from-view-id>/pages/usuario/Create.xhtml</from-view-id>
-       <navigation-case>
-           <from-outcome>login</from-outcome>
-           <to-view-id>/pages/usuario/Login.xhtml</to-view-id>
-       </navigation-case>
-   </navigation-rule>
+        <from-view-id>/pages/login/Register.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Create</from-outcome>
+            <to-view-id>/pages/login/Login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>fail</from-outcome>
+            <to-view-id>/pages/login/Register.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/pages/*</from-view-id>
+        <navigation-case>
+            <from-outcome>out</from-outcome>
+            <to-view-id>/pages/login/Login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
 </faces-config>

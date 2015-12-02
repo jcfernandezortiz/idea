@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templateLogin.xhtml">
+        <ui:define name="title">
+            
+        </ui:define>
+        <ui:define name="body"> 
+            <p:panel id="viewLoginPanel"  header="">
+                <p:fieldset legend="#{bundle.ingresoSistema}" style="width: 500px; margin-bottom:20px" >
+	        
+                <h:form>
+                    <h:panelGrid columns="2"> 
+                   
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_correo}" for="correo" />
+                    <h:inputText id="correo" value="#{loginController.email}" title="#{bundle.CreateUsuarioTitle_correo}" />
+                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_password}" for="password" />
+                    <h:inputSecret id="password" value="#{loginController.password}" title="#{bundle.CreateUsuarioTitle_password}" required="true" requiredMessage="#{bundle.RequiredPassword}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:commandButton action="#{loginController.login}" value="Sign in"/>
+                        <h:commandButton value="Cancel"/>
+                        <h:outputText value="Not a user" />
+                        <h:commandLink value="Sign Up" action="Register.xhtml" immediate="true"/>
+                    </h:panelGrid>                   
+                </h:form>
+            	</p:fieldset>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+
+</html>

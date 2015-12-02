@@ -1,45 +1,75 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package es.edu.upm.idea.controllers;
 
+import es.edu.upm.idea.controllers.util.JsfUtil;
 import es.edu.upm.idea.entities.Usuario;
-import es.edu.upm.idea.services.LoginFacade;
-
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.model.DataModel;
+import javax.faces.context.FacesContext;
+import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
+/**
+ *
+ * @author mfreire
+ */
 @Named("loginController")
 @SessionScoped
-public class LoginController implements Serializable {
-
+public class LoginController implements Serializable{
     private Usuario current;
-    private String username;
+    private String email;
     private String password;
-    private Date registerDate;
+    
     
     @EJB
-    private es.edu.upm.idea.services.LoginFacade ejbFacade;
+    private es.edu.upm.idea.services.UsuarioFacade ejbFacade;
+
+    public LoginController() {
+    }
     
-    private DataModel items = null;
-
-
     
-    public Usuario getCurrent() {
-        return current;
+    public String login(){
+        Usuario usuario = ejbFacade.findWithEmail(email);
+        if (usuario != null){
+            if(usuario.getPassword().equals(password))
+            {
+                //Autenticación exitosa
+                System.out.println("Autenticacion Exitosa");
+                current = usuario;
+                //JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("LoginDeleted"));
+                return "success";
+            } else{
+                System.out.println("Usuario o password incorrecto");
+                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("LoginFail"));
+                return "fail";
+            }
+        } else{
+            //Fallo autenticacion
+            System.out.println("Usuario o password incorrecto");
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("LoginFail"));
+            return "fail";
+        }
+    }
+    
+    public String logOff(){
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.invalidate();
+        return "out";
+    }
+    
+    
+    public String getEmail() {
+        return email;
     }
 
-    public void setCurrent(Usuario current) {
-        this.current = current;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -50,45 +80,11 @@ public class LoginController implements Serializable {
         this.password = password;
     }
 
-    public Date getRegisterDate() {
-        return registerDate;
+    public Usuario getCurrent() {
+        return current;
     }
 
-    public void setRegisterDate(Date registerDate) {
-        this.registerDate = registerDate;
-    }
-
-    public DataModel getItems() {
-        return items;
-    }
-
-    public void setItems(DataModel items) {
-        this.items = items;
-    }
-
-    public LoginFacade getEjbFacade() {
-        return ejbFacade;
-    }
-
-    public void setEjbFacade(LoginFacade ejbFacade) {
-        this.ejbFacade = ejbFacade;
-    }
-
-    public LoginController() {
-    }
-
-    public String loginUser(){
-            //compare username and password entries
-            current = getEjbFacade().login(getUsername(), getPassword());
-            if(current != null){
-                return "success";
-            }
-            return "fail";
-    }
-    
-    public String logoutUser(){
-            //compare username and password entries
-            current = null;
-            return "fail";
-    }
+    public void setCurrent(Usuario current) {
+        this.current = current;
+    }    
 }

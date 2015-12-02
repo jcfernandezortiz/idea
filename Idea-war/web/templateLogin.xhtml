@@ -17,29 +17,18 @@
                 <h4>share4growth</h4>
                 <div align="right">
                     <h:form id = "idUserSession">
-                    <h:panelGrid columns="2">
+                    <h:panelGrid columns="1">
                         <h:outputText id="usuario" value="#{loginController.current.nombre}"/>
                         <h:commandLink id="LogOff" value="#{bundle.logOff}" action="#{loginController.logOff}" />
                     </h:panelGrid>
                     </h:form>
                 </div> 
             </ui:insert>
-        </h1>
-        <p>
-            <p:panel id="viewPanel"  header="">
-		<p:messages id="msgs" />
-		
-                <p:fieldset legend="#{templateController.lenged}" style="margin-bottom:20px" >
-	        	<h:panelGrid columns="2" cellpadding="5">
-	
-                            <ui:insert name="body">Default Body</ui:insert>
-            
-            	        </h:panelGrid>
-	    	</p:fieldset>
-                <h:link outcome="/index" value="Home"/>
-            </p:panel>
-        </p>
-        
+            <p>
+                <ui:insert name="body">Default Body</ui:insert>
+            </p>
+             
+        </h1>   
     </h:body>
 
 </html>
