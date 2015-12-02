@@ -7,38 +7,41 @@
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.CreateUsuarioTitle}"></h:outputText>
+            <h:outputText value="#{loginController.current.correo}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <!--
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
+            -->
             <h:form id="loginForm">
-                <table frame="box">
+                <table>
                     <tr>
-                        <th>Login Page</th>
+                        <td><h:outputLabel value="Name" for="nombre"/></td>
+                        <td><h:inputText id="username" 
+                                         value="#{loginController.username}" 
+                                         title="#{bundle.LoginUsuarioTitle_correo}" required="true"
+                                         requiredMessage="Name field should be filled"/></td>
+                        <!--<td><h:message for="nombre" style="color:red"/></td>-->
                     </tr>
                     <tr>
-                        <td> <h:outputText value="Enter Your Name : "/> </td>
-                        <td> <h:inputTextarea rows="4" cols="30" id="username" 
-                                              value="#{usuarioController.selected.correo}" 
-                                              title="#{bundle.CreateUsuarioTitle_correo}" /> </td>
-                        <td><h:message for="inputName" style="color:red"/></td>
-                    </tr>
-                    <tr>
-                        <td> <h:outputText value="Enter password :"/> </td>
-                        <td> <h:inputTextarea rows="4" cols="30" id="password" 
-                                              value="#{usuarioController.selected.password}" 
-                                      title="#{bundle.CreateUsuarioTitle_password}" /> </td>
-                        <td><h:message for="inputPassword" style="color:red"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:commandButton value="Sign In" action="#{usuarioController.loginUser}"/></td>
-                        <td> <h:outputText value="Not a User "/>
-                            <h:outputLink value="register.xhtml">Sign Up</h:outputLink></td>
+                        <td><h:outputLabel value="#{bundle.CreateUsuarioLabel_password}" for="password" /></td>
+                        <td><h:inputSecret id="password" 
+                                           value="#{loginController.password}" 
+                                           title="#{bundle.LoginUsuarioTitle_password}" required="true"
+                                           requiredMessage="Password field should be filled"/></td>
+                        <!--<td><h:message for="password" style="color:red"/></td>-->
                     </tr>
                 </table>
+                <h:commandButton value="Sign In" action="#{loginController.loginUser}"/>  
             </h:form>
-            
+            <br />
+            <h:form id="loginForm2">
+                <h:outputText value="Not a User "/>
+                <h:commandLink action="register" value="#{bundle.CreateUsuarioTitle}" />
+            </h:form>
+            <br />
         </ui:define>
     </ui:composition>
 

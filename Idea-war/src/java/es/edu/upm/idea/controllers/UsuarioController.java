@@ -292,7 +292,4 @@ public class UsuarioController implements Serializable {
             }
         }
     }
-    public Usuario loginUser(String username, String password){
-            return current = getFacade().login(username, password);
-    }
 }
