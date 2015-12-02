@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -24,6 +25,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpSession;
 
 
 @Named("ideaController")
@@ -125,10 +127,15 @@ public class IdeaController implements Serializable {
             for(String s : selectedClasification ){
                list.add(getClasification().find( Integer.parseInt(s)));
             }
+            if (list.isEmpty()){
+             JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("NoClasificationSelected"));
+             return null;
+            }
             current.setClasificacionList(list);
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("IdeaCreated"));
-            return prepareCreate();
+            returnToList();
+            return null;
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -143,6 +150,7 @@ public class IdeaController implements Serializable {
         for (Clasificacion selected : current.getClasificacionList() ){
             selectedClasification[count++] = selected.getIdclasificacion()+"";        
         }        
+        
         current.setClasificacionList(list); 
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
@@ -154,10 +162,15 @@ public class IdeaController implements Serializable {
             for(String s : selectedClasification ){
                list.add(getClasification().find( Integer.parseInt(s)));
             }
+            if (list.isEmpty()){
+             JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("NoClasificationSelected"));
+             return null;
+            }
             current.setClasificacionList(list);
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("IdeaUpdated"));
-            return "View";
+            returnToList();
+            return null;
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -208,6 +221,11 @@ public class IdeaController implements Serializable {
         if (selectedItemIndex >= 0) {
             current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
         }
+    }
+    public void returnToList() throws Exception{
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("List.xhtml");          
+        
     }
 
     public DataModel getItems() {
