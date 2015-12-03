@@ -27,11 +27,19 @@
                                 <f:validateRegex pattern="^.*(?=.{6,10})(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9!@#$%]+$" />
                             </p:password>
                         </h:panelGrid>
+                        <span>* Required fields</span>
+                        <br />
                         <br />
                         <h:panelGrid columns="2">
-                            <p:commandButton action="#{usuarioController.create}" value="Save"/>
-                            <p:commandButton value="Cancel" action="Login.xhtml" immediate="true"/>
+                            <p:commandButton action="#{usuarioController.create}" 
+                                             value="Save"
+                                             ajax="false"/>
+                            <p:commandButton value="Cancel" 
+                                             action="Login.xhtml" 
+                                             immediate="true"
+                                             ajax="false" />
                         </h:panelGrid>
+                        
                         <h:panelGrid columns="2" cellpadding="5">
                             <p>Instructions</p>
                             <ul>
