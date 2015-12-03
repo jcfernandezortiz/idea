@@ -125,10 +125,19 @@ public class UsuarioController implements Serializable {
     }
 
     public String create() {
+        current.setFechaRegistro(new Date());
+        current.setActivo((short)1);
+        current.setIdperfil(new Perfil(1));
         try {
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuarioCreated"));
-            return prepareCreate();
+            if (getFacade().findWithEmail(current.getCorreo()) == null) {
+                getFacade().create(current);
+                JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuarioCreated"));
+                return prepareCreate();
+            }
+            else {
+                JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EmailRegistered"));
+                return "fail";
+            }
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
