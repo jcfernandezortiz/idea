@@ -24,15 +24,19 @@
                                 <p:inputTextarea rows="4" cols="30" id="titulo" value="#{ideaController.selected.titulo}" title="#{bundle.CreateIdeaTitle_titulo}" required="true" requiredMessage="#{bundle.CreateIdeaTitle_required}" />
                                 <p:outputLabel value="#{bundle.CreateIdeaLabel_descripcion}" for="descripcion" />
                                 <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{ideaController.selected.descripcion}" title="#{bundle.CreateIdeaTitle_descripcion}" /> 
-                                <h:outputLabel value="#{bundle.CreateIdeaLabel_clasification}" for="clasificacion" />
+                                <p:outputLabel value="#{bundle.CreateIdeaLabel_clasification}" for="clasificacion" />
                                 <p:selectManyCheckbox id="clasification" value="#{ideaController.selectedClasification}" 
-                                                      layout="grid" columns="2">
+                                                      layout="grid" columns="2"
+                                                      required="true" requiredMessage="#{bundle.NoClasificationSelected}" >
                                         <f:selectItems value="#{ideaController.selected.clasificacionList}" 
-                                                   var="clasificacion" 
+                                                   var="clasificacion"
                                                    itemLabel="#{clasificacion.nombre}" itemValue="#{clasificacion.idclasificacion}" />
                                 </p:selectManyCheckbox>
 	       			
 		        </h:panelGrid>
+                        <span>* Required fields</span>
+                        <br />
+                        <br />
                             <p:commandButton value="#{bundle.EditIdeaSaveLink}" id="ajax" 
 	       			update="viewPanel" 
                                 ajax="false"
