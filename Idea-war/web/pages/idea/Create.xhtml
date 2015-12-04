@@ -43,7 +43,7 @@
                                 <p:outputLabel value="#{bundle.CreateIdeaTitle_status}" for="descripcion" />
                                 <p:selectOneRadio id="estado" value="#{ideaController.selectedEstadoIdea}" 
                                                       layout="grid" columns="1" 
-                                                      requiredMessage="#{bundle.NoClasificationSelected}" >
+                                                      requiredMessage="#{bundle.NoStatusSelected}" >
                                     <f:selectItems value="#{estadoIdeaController.allEstado}" 
                                                    var="estadoItem" 
                                                    itemLabel="#{estadoItem.descripcion}" itemValue="#{estadoItem.idestadoIdea}" />

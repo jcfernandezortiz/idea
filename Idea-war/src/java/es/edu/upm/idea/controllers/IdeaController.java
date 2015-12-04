@@ -142,6 +142,7 @@ public class IdeaController implements Serializable {
         }
         try {
             //Se setea la Fecha actual:
+            setMyselectedEstadoIdea(new EstadoIdea(1));
             current.setFechaRegistro(new Date());
             current.setActivo((short) IDEA_ACTIVE_TRUE);
             current.setIdusuario(currentUser);
