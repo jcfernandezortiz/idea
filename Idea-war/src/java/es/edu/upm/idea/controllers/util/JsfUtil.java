@@ -1,8 +1,12 @@
 package es.edu.upm.idea.controllers.util;
 
+import es.edu.upm.idea.controllers.LoginController;
+import es.edu.upm.idea.entities.Usuario;
 import java.util.List;
+import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
@@ -57,4 +61,21 @@ public class JsfUtil {
         return converter.getAsObject(FacesContext.getCurrentInstance(), component, theId);
     }
 
+    public static Usuario getLoggedUser(){
+        
+        Usuario user = null;
+        FacesContext tmpEC = FacesContext.getCurrentInstance();
+        if (tmpEC != null){
+            ExternalContext ec = tmpEC.getExternalContext();
+            if(ec != null){
+                Map sMap = ec.getSessionMap();
+                if (sMap != null){
+                    LoginController loginBean = (LoginController) sMap.get("loginController");
+                    user = loginBean.getCurrent();
+                }
+            }
+        }
+                
+        return user;
+    }
 }
