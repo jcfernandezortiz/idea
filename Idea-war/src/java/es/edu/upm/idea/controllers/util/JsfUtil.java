@@ -62,20 +62,13 @@ public class JsfUtil {
     }
 
     public static Usuario getLoggedUser(){
+       FacesContext context = FacesContext.getCurrentInstance();
+       LoginController beanSession = context.getApplication().evaluateExpressionGet(context, "#{loginController}", LoginController.class);
+       Usuario usuario = null;
+       if (beanSession != null){
+           usuario = beanSession.getCurrent();
+       }
+       return usuario;
         
-        Usuario user = null;
-        FacesContext tmpEC = FacesContext.getCurrentInstance();
-        if (tmpEC != null){
-            ExternalContext ec = tmpEC.getExternalContext();
-            if(ec != null){
-                Map sMap = ec.getSessionMap();
-                if (sMap != null){
-                    LoginController loginBean = (LoginController) sMap.get("loginController");
-                    user = loginBean.getCurrent();
-                }
-            }
-        }
-                
-        return user;
     }
 }
