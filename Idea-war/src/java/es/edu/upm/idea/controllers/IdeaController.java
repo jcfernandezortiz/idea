@@ -34,6 +34,15 @@ import javax.servlet.http.HttpSession;
 @Named("ideaController")
 @SessionScoped
 public class IdeaController implements Serializable {
+    
+    int IDEA_ACTIVE_FALSE = 0;
+    int IDEA_ACTIVE_TRUE = 1;
+    int IDEA_ESTADO_ACTIVE = 1;
+    int IDEA_ESTADO_INACTION = 2;
+    int IDEA_ESTADO_SOLD = 3;
+    int IDEA_ESTADO_STANDBY = 4;
+    EstadoIdea myselectedEstadoIdea;
+    Integer selectedEstadoIdea;
 
     private Idea current;
     private DataModel items = null;
@@ -54,6 +63,7 @@ public class IdeaController implements Serializable {
        selectedClasification = null;
        myComent = null;
        coments = null;
+       selectedEstadoIdea = IDEA_ESTADO_ACTIVE;
     }
 
     private ClasificacionFacade getClasification(){
@@ -125,12 +135,17 @@ public class IdeaController implements Serializable {
     }
 
     public String create() {
+        Usuario currentUser= JsfUtil.getLoggedUser();
+        if(currentUser == null){
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("No user active"));
+            return null;
+        }
         try {
             //Se setea la Fecha actual:
             current.setFechaRegistro(new Date());
-            current.setActivo((short) 1);
-            current.setIdusuario(new Usuario(1));
-            current.setIdestadoIdea(new EstadoIdea(1));
+            current.setActivo((short) IDEA_ACTIVE_TRUE);
+            current.setIdusuario(currentUser);
+            current.setIdestadoIdea(myselectedEstadoIdea);
             List<Clasificacion> list =  new ArrayList<Clasificacion>();
             for(String s : selectedClasification ){
                list.add(getClasification().find( Integer.parseInt(s)));
@@ -365,4 +380,20 @@ public class IdeaController implements Serializable {
 
     }
 
+    public Integer getSelectedEstadoIdea() {
+        return selectedEstadoIdea;
+    }
+
+    public void setSelectedEstadoIdea(Integer selectedEstadoIdea) {
+        this.selectedEstadoIdea = selectedEstadoIdea;
+    }
+
+    public EstadoIdea getMyselectedEstadoIdea() {
+        return myselectedEstadoIdea;
+    }
+
+    public void setMyselectedEstadoIdea(EstadoIdea myselectedEstadoIdea) {
+        this.myselectedEstadoIdea = myselectedEstadoIdea;
+    }
+    
 }

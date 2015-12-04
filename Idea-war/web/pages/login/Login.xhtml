@@ -39,11 +39,9 @@
                     <h:panelGrid columns="2">
                         <p:commandButton action="#{loginController.login}" 
                                          value="Sign in"
-                                         ajax="false"/>
-                        <p:commandButton value="Cancel"
-                                         ajax="false"/>
-                        <h:outputText value="Not a user" />
-                        <h:commandLink value="Sign Up" action="Register.xhtml" immediate="true"/>
+                                         ajax="false"
+                                         icon="ui-icon-check"/>
+                        <p:commandButton value="Register" action="Register.xhtml" immediate="true" icon="ui-icon-star"/>
                     </h:panelGrid>                   
                 </h:form>
             	</p:fieldset>

@@ -6,6 +6,7 @@ import es.edu.upm.idea.controllers.util.PaginationHelper;
 import es.edu.upm.idea.services.EstadoIdeaFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -42,6 +43,10 @@ public class EstadoIdeaController implements Serializable {
 
     private EstadoIdeaFacade getFacade() {
         return ejbFacade;
+    }
+    
+    public List<EstadoIdea> getAllEstado(){
+        return getFacade().findAll();
     }
 
     public PaginationHelper getPagination() {
