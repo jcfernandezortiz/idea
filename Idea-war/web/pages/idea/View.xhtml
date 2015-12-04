@@ -22,13 +22,37 @@
                                                    var="clasificacion" 
                                                    itemLabel="#{clasificacion.nombre}" itemValue="#{clasificacion.idclasificacion}" />
                     </p:selectManyCheckbox>
+                    
+                    <p:outputLabel value="#{bundle.Comments}"  />
+                    <p:dataTable value="#{ideaController.selected.comentarioList}" var="comment" style="border-style: none">
+
+                        <p:column width="25%">
+                                    <h:outputText value="#{comment.idusuario.nombre}"/>
+                        </p:column>    
+                        <p:column>
+                            <h:outputText value="#{comment.comentario}"/>
+                        </p:column>
+                            
+                    </p:dataTable>
+                    <p:outputLabel value="#{bundle.NewComment}" for="myComent" />
+                    <p:inputTextarea rows="4" cols="30" id="myComent" 
+                                     value="#{ideaController.myComent}" 
+                                     title="#{bundle.comentario}" /> 
                 </h:panelGrid>
                 <br />
                 <br />
-                <h:commandLink action="#{ideaController.prepareList}" value="#{bundle.ViewIdeaShowAllLink}">
+                    <p:commandButton value="#{bundle.EditIdeaSaveLink}" id="ajax" 
+                        update="viewPanel" 
+                        ajax="false"
+                        actionListener="#{ideaController.comment}" 
+                        styleClass="ui-priority-primary" >
+                        <f:param name="action_label" value="#{bundle.ListIdeaEditLenged}" />
+                    </p:commandButton>
+                <br />
+                <br />
+                <h:commandLink action="#{ideaController.prepareList}" value="#{bundle.Back}">
                     <f:param name="action_label" value="#{bundle.IdeaListLenged}" />
                 </h:commandLink>
-
             </h:form>
         </ui:define>        
     </ui:composition>

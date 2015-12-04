@@ -4,6 +4,7 @@ import es.edu.upm.idea.entities.Idea;
 import es.edu.upm.idea.controllers.util.JsfUtil;
 import es.edu.upm.idea.controllers.util.PaginationHelper;
 import es.edu.upm.idea.entities.Clasificacion;
+import es.edu.upm.idea.entities.Comentario;
 import es.edu.upm.idea.entities.EstadoIdea;
 import es.edu.upm.idea.entities.Usuario;
 import es.edu.upm.idea.services.ClasificacionFacade;
@@ -43,10 +44,14 @@ public class IdeaController implements Serializable {
     private int selectedItemIndex;
     private String[] selectedClasification;
     private List<Clasificacion> clasifications;
-
+    private String[] coments;
+    private String myComent;
+            
     public IdeaController() {
        this.clasifications = new ArrayList<Clasificacion>();
        selectedClasification = null;
+       myComent = null;
+       coments = null;
     }
 
     private ClasificacionFacade getClasification(){
@@ -96,6 +101,7 @@ public class IdeaController implements Serializable {
     public String prepareView() {
         current = (Idea) getItems().getRowData();
         List<Clasificacion> list=getClasification().findAll();
+        coments = null;
         selectedClasification = new String[list.size()];
         int count = 0 ;
         
@@ -177,6 +183,28 @@ public class IdeaController implements Serializable {
         }
     }
 
+    public String comment() {
+        try {            
+            if (!myComent.isEmpty()){
+                // crea comentario 
+                Comentario coment = new Comentario();
+                coment.setComentario(myComent);
+                coment.setIdidea(current);
+                coment.setFechaRegistro(new Date());
+                coment.setIdusuario(current.getIdusuario());
+                List<Comentario> comentList = current.getComentarioList();
+                comentList.add(coment);
+                current.setComentarioList(comentList);
+                myComent = null;
+            }
+            getFacade().edit(current);
+            return null;
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+    
     public String destroy() {
         current = (Idea) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
@@ -257,6 +285,14 @@ public class IdeaController implements Serializable {
         return "List";
     }
 
+    public String[] getComents() {
+        return coments;
+    }
+
+    public void setComents(String[] coments) {
+        this.coments = coments;
+    }
+
     public SelectItem[] getItemsAvailableSelectMany() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
     }
@@ -276,6 +312,16 @@ public class IdeaController implements Serializable {
     public void setSelectedClasification(String[] selectedClasification) {
         this.selectedClasification = selectedClasification;
     }
+
+    public String getMyComent() {
+        return myComent;
+    }
+
+    public void setMyComent(String myComent) {
+        this.myComent = myComent;
+    }
+    
+    
 
     @FacesConverter(forClass = Idea.class)
     public static class IdeaControllerConverter implements Converter {
