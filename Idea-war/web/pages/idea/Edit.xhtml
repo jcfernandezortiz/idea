@@ -23,7 +23,12 @@
 		    		<p:outputLabel value="#{bundle.CreateIdeaLabel_titulo}" for="titulo" />
                                 <p:inputTextarea rows="4" cols="30" id="titulo" value="#{ideaController.selected.titulo}" title="#{bundle.CreateIdeaTitle_titulo}" required="true" requiredMessage="#{bundle.CreateIdeaTitle_required}" />
                                 <p:outputLabel value="#{bundle.CreateIdeaLabel_descripcion}" for="descripcion" />
-                                <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{ideaController.selected.descripcion}" title="#{bundle.CreateIdeaTitle_descripcion}" /> 
+                                <p:inputTextarea rows="4" cols="30" 
+                                                 id="descripcion" 
+                                                 value="#{ideaController.selected.descripcion}" 
+                                                 title="#{bundle.CreateIdeaTitle_descripcion}" 
+                                                 required="true"
+                                                 requiredMessage="#{bundle.CreateIdeaDescription_required}" /> 
                                 <p:outputLabel value="#{bundle.CreateIdeaLabel_clasification}" for="clasification" />
                                 <p:selectManyCheckbox id="clasification" value="#{ideaController.selectedClasification}" 
                                                       layout="grid" columns="2"
@@ -32,6 +37,14 @@
                                                    var="clasificacion"
                                                    itemLabel="#{clasificacion.nombre}" itemValue="#{clasificacion.idclasificacion}" />
                                 </p:selectManyCheckbox>
+                                <p:outputLabel value="#{bundle.CreateIdeaLabel_status}" for="estadoItem" />
+                                <p:selectOneRadio id="estadoItem" value="#{ideaController.selectedEstadoIdea}" 
+                                                      layout="grid" columns="1" 
+                                                      requiredMessage="#{bundle.NoStatusSelected}" >
+                                    <f:selectItems value="#{estadoIdeaController.allEstado}" 
+                                                   var="estadoItem" 
+                                                   itemLabel="#{estadoItem.descripcion}" itemValue="#{estadoItem.idestadoIdea}" />
+                                </p:selectOneRadio>
 	       			
 		        </h:panelGrid>
                         <span>* Required fields</span>

@@ -22,6 +22,13 @@
                                                    var="clasificacion" 
                                                    itemLabel="#{clasificacion.nombre}" itemValue="#{clasificacion.idclasificacion}" />
                     </p:selectManyCheckbox>
+                    <p:outputLabel value="#{bundle.CreateIdeaLabel_status}" for="estadoItem" />
+                    <p:selectOneRadio id="estadoItem" value="#{ideaController.selectedEstadoIdea}" disabled="true" 
+                                          layout="grid" columns="1">
+                        <f:selectItems value="#{estadoIdeaController.allEstado}" 
+                                       var="estadoItem" 
+                                       itemLabel="#{estadoItem.descripcion}" itemValue="#{estadoItem.idestadoIdea}" />
+                    </p:selectOneRadio>
                     
                     <p:outputLabel value="#{bundle.Comments}"  />
                     <p:dataTable value="#{ideaController.selected.comentarioList}" var="comment" style="border-style: none">

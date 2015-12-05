@@ -112,6 +112,7 @@ public class IdeaController implements Serializable {
     public String prepareView() {
         current = (Idea) getItems().getRowData();
         List<Clasificacion> list=getClasification().findAll();
+        selectedEstadoIdea = current.getIdestadoIdea().getIdestadoIdea();
         coments = null;
         selectedClasification = new String[list.size()];
         int count = 0 ;
@@ -127,6 +128,7 @@ public class IdeaController implements Serializable {
     public String prepareCreate() {
         current = new Idea();
         selectedClasification = null;
+        selectedEstadoIdea = IDEA_ESTADO_ACTIVE;
         clasifications = getClasification().findAll();
         current.setClasificacionList(clasifications);
         selectedItemIndex = -1;
@@ -168,6 +170,7 @@ public class IdeaController implements Serializable {
         current = (Idea) getItems().getRowData();
         List<Clasificacion> list=getClasification().findAll();
         selectedClasification = new String[list.size()];
+        selectedEstadoIdea = current.getIdestadoIdea().getIdestadoIdea();
         int count = 0 ;
         for (Clasificacion selected : current.getClasificacionList() ){
             selectedClasification[count++] = selected.getIdclasificacion()+"";        
@@ -180,6 +183,7 @@ public class IdeaController implements Serializable {
 
     public String update() {
         try {
+            current.setIdestadoIdea(new EstadoIdea(selectedEstadoIdea));
             List<Clasificacion> list =  new ArrayList<Clasificacion>();
             for(String s : selectedClasification ){
                list.add(getClasification().find( Integer.parseInt(s)));
@@ -283,6 +287,7 @@ public class IdeaController implements Serializable {
         items = null;
 //        current = null;
         selectedClasification = null;
+        selectedEstadoIdea = IDEA_ESTADO_ACTIVE;
     }
 
     private void recreatePagination() {
