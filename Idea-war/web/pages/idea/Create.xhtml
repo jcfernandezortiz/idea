@@ -41,7 +41,7 @@
                                 </p:selectManyCheckbox>
                                 
                                 <p:outputLabel value="#{bundle.CreateIdeaTitle_status}" for="descripcion" />
-                                <p:selectOneRadio id="estado" value="#{ideaController.selectedEstadoIdea}" 
+                                <p:selectOneRadio id="estadoItem" value="#{ideaController.selectedEstadoIdea}" 
                                                       layout="grid" columns="1" 
                                                       requiredMessage="#{bundle.NoStatusSelected}" >
                                     <f:selectItems value="#{estadoIdeaController.allEstado}" 

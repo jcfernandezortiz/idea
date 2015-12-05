@@ -41,7 +41,6 @@ public class IdeaController implements Serializable {
     int IDEA_ESTADO_INACTION = 2;
     int IDEA_ESTADO_SOLD = 3;
     int IDEA_ESTADO_STANDBY = 4;
-    EstadoIdea myselectedEstadoIdea;
     Integer selectedEstadoIdea;
 
     private Idea current;
@@ -142,11 +141,10 @@ public class IdeaController implements Serializable {
         }
         try {
             //Se setea la Fecha actual:
-            setMyselectedEstadoIdea(new EstadoIdea(1));
             current.setFechaRegistro(new Date());
             current.setActivo((short) IDEA_ACTIVE_TRUE);
             current.setIdusuario(currentUser);
-            current.setIdestadoIdea(myselectedEstadoIdea);
+            current.setIdestadoIdea(new EstadoIdea(selectedEstadoIdea));
             List<Clasificacion> list =  new ArrayList<Clasificacion>();
             for(String s : selectedClasification ){
                list.add(getClasification().find( Integer.parseInt(s)));
@@ -387,14 +385,5 @@ public class IdeaController implements Serializable {
 
     public void setSelectedEstadoIdea(Integer selectedEstadoIdea) {
         this.selectedEstadoIdea = selectedEstadoIdea;
-    }
-
-    public EstadoIdea getMyselectedEstadoIdea() {
-        return myselectedEstadoIdea;
-    }
-
-    public void setMyselectedEstadoIdea(EstadoIdea myselectedEstadoIdea) {
-        this.myselectedEstadoIdea = myselectedEstadoIdea;
-    }
-    
+    }    
 }
