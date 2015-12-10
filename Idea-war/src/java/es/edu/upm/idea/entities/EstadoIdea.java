@@ -101,7 +101,7 @@ public class EstadoIdea implements Serializable {
 
     @Override
     public String toString() {
-        return idestadoIdea + " - " + descripcion;
+        return descripcion;
     }
     
 }

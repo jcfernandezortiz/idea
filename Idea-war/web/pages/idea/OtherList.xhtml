@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+       
+        
+        <ui:define name="body">
+ 
+            <h:form styleClass="jsfcrud_list_form">
+                <br/>
+                <h:outputText value="#{bundle.ListIdeaTitle}" style="font-size: large;"></h:outputText>
+                <br/>                 
+                <h:outputText escape="false" value="#{bundle.ListIdeaEmpty}" rendered="#{ideaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ideaController.items.rowCount > 0}">
+                    <h:outputText value="#{ideaController.pagination.pageFirstItem + 1}..#{ideaController.pagination.pageLastItem + 1}/#{ideaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ideaController.previous}" value="#{bundle.Previous} #{ideaController.pagination.pageSize}" rendered="#{ideaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ideaController.next}" value="#{bundle.Next} #{ideaController.pagination.pageSize}" rendered="#{ideaController.pagination.hasNextPage}"/>&nbsp;
+                    <p:dataTable value="#{ideaController.items}" var="item" widgetVar="ideasTable"                    
+                                 emptyMessage="No ideas found with given criteria"
+                                 filteredValue="#{ideaController.filteredIdeas}">
+                        
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="Search all fields:" />
+                                <p:inputText id="globalFilter" onkeyup="PF('ideasTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+                            </p:outputPanel>
+                        </f:facet>
+                        <p:column filterBy="#{item.titulo}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIdeaTitle_titulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titulo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIdeaTitle_fechaRegistro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaRegistro}">
+                                <f:convertDateTime pattern="yyyy/MM/dd" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column filterBy="#{item.idusuario.nombre}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIdeaTitle_idusuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idusuario.nombre}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.idestadoIdea.descripcion}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIdeaTitle_idestadoIdea}"/>
+                            </f:facet>
+                            <f:facet name="filter">
+                                <p:selectOneMenu onchange="PF('ideasTable').filter()" >
+                                    <f:selectItem itemLabel="Select One" itemValue="#{itemVar.descripcion}" noSelectionOption="true" />
+                                    <f:selectItems value="#{estadoIdeaController.allEstado}" var="itemVar" />
+                                </p:selectOneMenu>
+                            </f:facet>
+                            <h:outputText value="#{item.idestadoIdea.descripcion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ideaController.prepareView}" value="#{bundle.ListIdeaViewLink}">
+                                <f:param name="action_label" value="#{bundle.ListIdeaViewLenged}" />
+                            </h:commandLink>
+                            <h:outputText value=" "/>
+                            <h:outputText value=" "/>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />
+                <br />   
+            </h:form>
+       </ui:define>
+    </ui:composition>
+
+</html>
