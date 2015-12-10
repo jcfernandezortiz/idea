@@ -54,6 +54,7 @@ public class IdeaController implements Serializable {
     private int selectedItemIndex;
     private String[] selectedClasification;
     private List<Clasificacion> clasifications;
+    private List<Idea> filteredIdeas;
     private String[] coments;
     private String myComent;
             
@@ -340,6 +341,14 @@ public class IdeaController implements Serializable {
 
     public void setMyComent(String myComent) {
         this.myComent = myComent;
+    }
+
+    public List<Idea> getFilteredIdeas() {
+        return filteredIdeas;
+    }
+
+    public void setFilteredIdeas(List<Idea> filteredIdeas) {
+        this.filteredIdeas = filteredIdeas;
     }
     
     
