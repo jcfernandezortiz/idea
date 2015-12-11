@@ -1,8 +1,8 @@
 
 #top {
     position: relative;
-    background-color: #3a4f54;
-    color: white;
+    background-color: #3a4f54 !important;
+    color: white !important;
     padding: 5px;
     margin: 0px 0px 10px 0px;
 }

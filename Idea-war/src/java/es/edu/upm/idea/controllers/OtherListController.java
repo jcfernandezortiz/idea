@@ -110,7 +110,7 @@ public class OtherListController implements Serializable {
 
     public String prepareList() {
         recreateModel();
-        return "List";
+        return "OtherList";
     }
 
     public String prepareView() {

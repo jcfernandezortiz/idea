@@ -53,8 +53,9 @@
                             <p:commandButton value="#{bundle.EditIdeaSaveLink}" id="ajax" 
 	       			update="viewPanel" 
                                 ajax="false"
+                                action="#{ideaController.prepareList}" 
 	       			actionListener="#{ideaController.update}" 
-                                styleClass="ui-priority-primary" >
+                                styleClass="ui-priority-primary">
                                 <f:param name="action_label" value="#{bundle.ListIdeaEditLenged}" />
                             </p:commandButton>
                             

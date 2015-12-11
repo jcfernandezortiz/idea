@@ -43,11 +43,12 @@
                 <h:form>
                 <p:menu>
                     <p:submenu label="Ideas">
-                        <p:menuitem value="List Ideas" action="#{templateController.listIdeas}"  icon="ui-icon-folder-collapsed"/>                        
+                        <p:menuitem value="List Ideas" action="#{otherListController.prepareList}"  icon="ui-icon-folder-collapsed"/>                        
                     </p:submenu>
                     <p:submenu label="Profile">
-                        <p:menuitem value="My Ideas" action="#{templateController.myIdeas}"  icon="ui-icon-folder-open"/>
-                        <p:menuitem value="Create Idea" action="#{templateController.createIdea}"  icon="ui-icon-circle-plus"/>
+                        <p:menuitem value="#{bundle.MyIdeas}" action="#{ideaController.prepareList}"  icon="ui-icon-folder-open"/>
+                        <p:menuitem value="#{bundle.ListIdeaCreateLink}"  action="#{ideaController.prepareCreate}" icon="ui-icon-circle-plus"/>
+                               
                     </p:submenu>
                 </p:menu>
                 </h:form>

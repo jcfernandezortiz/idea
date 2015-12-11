@@ -6,10 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-       
-        
         <ui:define name="body">
- 
             <h:form styleClass="jsfcrud_list_form">
                 <br/>       
                 <h:commandLink action="#{ideaController.prepareCreate}" value="#{bundle.ListIdeaCreateLink}">
@@ -20,7 +17,6 @@
                  <h:outputText value="#{bundle.ListIdeaTitle}" style="font-size: large;"></h:outputText>
                  <br/>
                  <br/>
-                
                 <h:outputText escape="false" value="#{bundle.ListIdeaEmpty}" rendered="#{ideaController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{ideaController.items.rowCount > 0}">
                     <h:outputText value="#{ideaController.pagination.pageFirstItem + 1}..#{ideaController.pagination.pageLastItem + 1}/#{ideaController.pagination.itemsCount}"/>&nbsp;
@@ -79,10 +75,7 @@
                 </h:panelGroup>
                 <br />
                 <br />
-                
-                
             </h:form>
        </ui:define>
     </ui:composition>
-
 </html>

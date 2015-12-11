@@ -6,13 +6,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-
 <h:head>
 </h:head>
 <h:body>
 	<ui:composition template="/template.xhtml">
-        
-        
             <ui:define name="body">
 	<!-- Content -->
 		<h:form>
@@ -39,7 +36,6 @@
                                                    var="clasificacion" 
                                                    itemLabel="#{clasificacion.nombre}" itemValue="#{clasificacion.idclasificacion}" />
                                 </p:selectManyCheckbox>
-                                
                                 <p:outputLabel value="#{bundle.CreateIdeaTitle_status}" for="descripcion" />
                                 <p:selectOneRadio id="estadoItem" value="#{ideaController.selectedEstadoIdea}" 
                                                       layout="grid" columns="1" 
@@ -58,7 +54,8 @@
 		       			update="viewPanel" 
 		       			actionListener="#{ideaController.create}" 
                                         action="#{ideaController.prepareList}"
-                                        styleClass="ui-priority-primary"  >
+                                        styleClass="ui-priority-primary"
+                                        >
                                  <f:param name="action_label" value="#{bundle.ListIdeaCreateLenged}" />
                             </p:commandButton>
                         <br />
