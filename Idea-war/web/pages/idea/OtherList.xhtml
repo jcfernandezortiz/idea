@@ -14,14 +14,14 @@
                 <br/>
                 <h:outputText value="#{bundle.ListIdeaTitle}" style="font-size: large;"></h:outputText>
                 <br/>                 
-                <h:outputText escape="false" value="#{bundle.ListIdeaEmpty}" rendered="#{ideaController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{ideaController.items.rowCount > 0}">
-                    <h:outputText value="#{ideaController.pagination.pageFirstItem + 1}..#{ideaController.pagination.pageLastItem + 1}/#{ideaController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{ideaController.previous}" value="#{bundle.Previous} #{ideaController.pagination.pageSize}" rendered="#{ideaController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{ideaController.next}" value="#{bundle.Next} #{ideaController.pagination.pageSize}" rendered="#{ideaController.pagination.hasNextPage}"/>&nbsp;
-                    <p:dataTable value="#{ideaController.items}" var="item" widgetVar="ideasTable"                    
+                <h:outputText escape="false" value="#{bundle.ListIdeaEmpty}" rendered="#{otherListController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{otherListController.items.rowCount > 0}">
+                    <h:outputText value="#{otherListController.pagination.pageFirstItem + 1}..#{otherListController.pagination.pageLastItem + 1}/#{otherListController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{otherListController.previous}" value="#{bundle.Previous} #{otherListController.pagination.pageSize}" rendered="#{otherListController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{otherListController.next}" value="#{bundle.Next} #{otherListController.pagination.pageSize}" rendered="#{otherListController.pagination.hasNextPage}"/>&nbsp;
+                    <p:dataTable value="#{otherListController.items}" var="item" widgetVar="ideasTable"                    
                                  emptyMessage="No ideas found with given criteria"
-                                 filteredValue="#{ideaController.filteredIdeas}">
+                                 filteredValue="#{otherListController.filteredIdeas}">
                         
                         <f:facet name="header">
                             <p:outputPanel>
@@ -65,7 +65,7 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{ideaController.prepareView}" value="#{bundle.ListIdeaViewLink}">
+                            <h:commandLink action="#{otherListController.prepareView}" value="#{bundle.ListIdeaViewLink}">
                                 <f:param name="action_label" value="#{bundle.ListIdeaViewLenged}" />
                             </h:commandLink>
                             <h:outputText value=" "/>
