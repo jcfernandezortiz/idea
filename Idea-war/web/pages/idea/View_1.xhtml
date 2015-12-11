@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="#{bundle.ViewIdeaLabel_titulo}"/>
+                    <p:outputLabel value="#{otherListController.selected.titulo}" title="#{bundle.ViewIdeaTitle_titulo}"/>
+                    <p:outputLabel value="#{bundle.ViewIdeaLabel_descripcion}"/>
+                    <p:outputLabel value="#{otherListController.selected.descripcion}" title="#{bundle.ViewIdeaTitle_descripcion}"/>            
+                    <p:outputLabel value="#{bundle.CreateIdeaLabel_clasification}" for="clasification" />
+                    <p:selectManyCheckbox id="clasification" value="#{otherListController.selectedClasification}" disabled="true" 
+                                                      layout="grid" columns="2">
+                                    <f:selectItems value="#{otherListController.selected.clasificacionList}" 
+                                                   var="clasificacion" 
+                                                   itemLabel="#{clasificacion.nombre}" itemValue="#{clasificacion.idclasificacion}" />
+                    </p:selectManyCheckbox>
+                    <p:outputLabel value="#{bundle.CreateIdeaLabel_status}" for="estadoItem" />
+                    <p:selectOneRadio id="estadoItem" value="#{otherListController.selectedEstadoIdea}" disabled="true" 
+                                          layout="grid" columns="1">
+                        <f:selectItems value="#{estadoIdeaController.allEstado}" 
+                                       var="estadoItem" 
+                                       itemLabel="#{estadoItem.descripcion}" itemValue="#{estadoItem.idestadoIdea}" />
+                    </p:selectOneRadio>
+                </h:panelGrid>
+                    <br />
+                    <br />
+                    <h:commandLink action="#{otherListController.prepareList}" value="#{bundle.Back}">
+                        <f:param name="action_label" value="#{bundle.IdeaListLenged}" />
+                    </h:commandLink>
+                    <br />
+                    <br />
+                    <p:outputLabel value="#{bundle.NewComment}" for="myComent" />
+                    <br />
+                    <p:inputTextarea rows="4" cols="30" id="myComent" 
+                                     value="#{otherListController.myComent}" 
+                                     title="#{bundle.comentario}" /> 
+                    <br />
+                    <p:commandButton value="#{bundle.SaveComment}" id="ajax" 
+                        update="viewPanel" 
+                        ajax="false"
+                        actionListener="#{otherListController.comment}" 
+                        styleClass="ui-priority-primary" >
+                        <f:param name="action_label" value="#{bundle.ListIdeaEditLenged}" />
+                    </p:commandButton>
+                    <br />
+                    <br />
+                    <p:dataTable id="ideaViewTable" value="#{otherListController.selected.comentarioList}" var="comment" style="border: #FFFFFF !important; background-color: #CCCCCC !important; margin: 0px !important; padding: 0px !important;">
+                        <f:facet name="header">
+                            <p:outputLabel value="#{bundle.Comments}"  />
+                        </f:facet>
+                        <p:column width="130" style="background-color: #dfecf1 !important; margin: 0px !important; padding: 0px !important;">
+                            <div style="margin: 0px; padding: 12px 8px 12px 8px;">
+                            <p:outputLabel value="#{bundle.UserComment}"/>
+                            <h:outputText value="#{comment.idusuario.nombre}"/>
+                            </div>
+                        </p:column>
+                        <p:column>
+                            <div style="background-color: #FFFFFF; margin: 0px; padding: 12px 8px 12px 8px;">
+                            <h:outputText value="#{comment.comentario}"/>
+                            </div>
+                            <br />
+                        </p:column>
+                            
+                    </p:dataTable>
+            </h:form>
+        </ui:define>        
+    </ui:composition>
+
+</html>

@@ -126,7 +126,7 @@ public class OtherListController implements Serializable {
         }        
         current.setClasificacionList(list); 
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "View_1";
     }
 
     public String prepareCreate() {
@@ -301,13 +301,13 @@ public class OtherListController implements Serializable {
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return "List";
+        return "OtherList";
     }
 
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "List";
+        return "OtherList";
     }
 
     public String[] getComents() {
