@@ -93,12 +93,13 @@ public class IdeaController implements Serializable {
 
                 @Override
                 public int getItemsCount() {
-                    return getFacade().count();
+                    return getFacade().count1(JsfUtil.getLoggedUser());
                 }
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    Usuario user = JsfUtil.getLoggedUser();
+                    return new ListDataModel(getFacade().findRange1(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, user));
                 }
             };
         }
