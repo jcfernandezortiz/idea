@@ -42,12 +42,12 @@
                 
                 <h:form>
                 <p:menu>
-                    <p:submenu label="Lista">
-                        <p:menuitem value="List" action="#{templateController.update}"  icon="ui-icon-disk"/>
-                        <p:menuitem value="Create" action="#{templateController.save}"  icon="ui-icon-arrowrefresh-1-w"/>
+                    <p:submenu label="Ideas">
+                        <p:menuitem value="List Ideas" action="#{templateController.listIdeas}"  icon="ui-icon-folder-collapsed"/>                        
                     </p:submenu>
                     <p:submenu label="Profile">
-                        <p:menuitem value="My List" action="#{templateController.delete}"  icon="ui-icon-close"/>
+                        <p:menuitem value="My Ideas" action="#{templateController.myIdeas}"  icon="ui-icon-folder-open"/>
+                        <p:menuitem value="Create Idea" action="#{templateController.createIdea}"  icon="ui-icon-circle-plus"/>
                     </p:submenu>
                 </p:menu>
                 </h:form>

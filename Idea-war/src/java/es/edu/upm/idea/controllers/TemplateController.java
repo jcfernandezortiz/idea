@@ -35,16 +35,16 @@ public class TemplateController implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
         
     }
-    public String update(){
-        return "/pages/idea/List.xhtml";
+    public String listIdeas(){
+        return "/pages/idea/OtherList.xhtml";
     }
     
-    public String save(){
+    public String createIdea(){
         return "/pages/idea/Create.xhtml";
     }
     
-    public String delete(){
-        return "/pages/idea/Edit.xhtml";
+    public String myIdeas(){
+        return "/pages/idea/List.xhtml";
     }
          
     public void onTabClose(TabCloseEvent event) {
